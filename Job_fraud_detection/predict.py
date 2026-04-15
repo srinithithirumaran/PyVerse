@@ -13,8 +13,9 @@ import joblib
 import os
 
 # ─── Paths ────────────────────────────────────────────────────────────────────
-MODEL_PATH      = os.path.join("ml", "models", "logistic_regression.pkl")
-VECTORIZER_PATH = os.path.join("ml", "models", "vectorizer.pkl")
+BASE_DIR        = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH      = os.path.join(BASE_DIR, "ml", "models", "logistic_regression.pkl")
+VECTORIZER_PATH = os.path.join(BASE_DIR, "ml", "models", "vectorizer.pkl")
 
 
 def load_model():

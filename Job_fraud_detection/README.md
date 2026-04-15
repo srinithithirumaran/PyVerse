@@ -29,16 +29,11 @@ Built with Django as the web interface, the system lets users:
 ## 🗂️ Project Structure
 
 ```
-Job_Fraud_Detection/
+Job_fraud_detection/
 ├── README.md
 ├── requirements.txt
 ├── model_training.py        # Train all 4 models
-├── predict.py               # Standalone prediction script
-└── screenshots/
-    ├── dashboard.png
-    ├── prediction.png
-    ├── algorithms.png
-    └── comparison.png
+└── predict.py               # Standalone prediction script
 ```
 
 ---
@@ -58,8 +53,8 @@ Job_Fraud_Detection/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/srinithithirumaran/Job-Fraud-Detection-System.git
-cd Job-Fraud-Detection-System
+git clone https://github.com/pyverse/PyVerse.git
+cd PyVerse/Job_fraud_detection
 
 # 2. Create virtual environment
 python -m venv venv
@@ -107,7 +102,7 @@ result = predict_fraud(
 )
 
 print(result)
-# Output: {'label': 'Fraudulent', 'confidence': 0.94}
+# Output: {'label': 'Fraudulent', 'confidence': 0.94, 'risk_level': 'High'}
 ```
 
 ---
@@ -153,15 +148,7 @@ This will:
 
 ## 📸 Screenshots
 
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
-### Fraud Prediction
-![Prediction](screenshots/prediction.png)
-
-### Algorithm Comparison
-![Comparison](screenshots/comparison.png)
-
+Screenshots are not currently included in this repository snapshot. Add the referenced images to a committed `screenshots/` directory or update this section with valid image URLs before publishing.
 ---
 
 ## 🔮 Future Enhancements
@@ -184,4 +171,4 @@ This will:
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](../LICENSE).

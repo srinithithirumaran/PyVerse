@@ -34,13 +34,12 @@ from sklearn.metrics import (
     confusion_matrix, roc_curve
 )
 
-warnings.filterwarnings("ignore")
-
 # ─── Paths ────────────────────────────────────────────────────────────────────
-DATA_PATH    = os.path.join("ml", "data", "jobs_dataset.csv")
-MODELS_DIR   = os.path.join("ml", "models")
-METRICS_DIR  = os.path.join("ml", "metrics")
-PLOTS_DIR    = os.path.join("ml", "plots")
+BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH    = os.path.join(BASE_DIR, "ml", "data", "jobs_dataset.csv")
+MODELS_DIR   = os.path.join(BASE_DIR, "ml", "models")
+METRICS_DIR  = os.path.join(BASE_DIR, "ml", "metrics")
+PLOTS_DIR    = os.path.join(BASE_DIR, "ml", "plots")
 
 for d in [MODELS_DIR, METRICS_DIR, PLOTS_DIR]:
     os.makedirs(d, exist_ok=True)
@@ -172,7 +171,6 @@ def train_classical_models(X_train, X_test, y_train, y_test):
 # ─── 4. Deep Learning Models ──────────────────────────────────────────────────
 def train_deep_learning_models(X_train, X_test, y_train, y_test):
     try:
-        import tensorflow as tf
         from tensorflow.keras.preprocessing.text import Tokenizer
         from tensorflow.keras.preprocessing.sequence import pad_sequences
         from tensorflow.keras.models import Sequential
@@ -278,11 +276,12 @@ if __name__ == "__main__":
 
     X, y = load_data(DATA_PATH)
 
-    # 70 / 15 / 15 split
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.30, random_state=42, stratify=y)
-    X_val,   X_test, y_val,   y_test = train_test_split(X_temp, y_temp, test_size=0.50, random_state=42, stratify=y_temp)
+    # Train / test split (validation is handled internally where needed)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.15, random_state=42, stratify=y
+    )
 
-    print(f"\n[INFO] Train : {len(X_train)} | Val : {len(X_val)} | Test : {len(X_test)}")
+    print(f"\n[INFO] Train : {len(X_train)} | Test : {len(X_test)}")
 
     classical_results = train_classical_models(X_train, X_test, y_train, y_test)
     dl_results        = train_deep_learning_models(X_train, X_test, y_train, y_test)
